@@ -1,30 +1,19 @@
 DELIMITER $$
 
--- Create or update the ComputeAverageScoreForUser stored procedure
-CREATE PROCEDURE ComputeAverageScoreForUser(
-    IN user_id INT  -- Input: user ID (existing user)
-)
+-- Drop the procedure if it already exists
+DROP PROCEDURE IF EXISTS ComputeAverageScoreForUser;
+
+-- Create the ComputeAverageScoreForUser stored procedure
+CREATE PROCEDURE ComputeAverageScoreForUser(IN `user_id` INT)
 BEGIN
-    DECLARE avg_score DECIMAL(10, 2);
-
-    -- Compute the average score for the student
-    SELECT AVG(score) INTO avg_score
-    FROM corrections
-    WHERE user_id = user_id;
-
-    -- If there are no corrections for the user, set average_score to NULL or 0
-    IF avg_score IS NULL THEN
-        SET avg_score = 0;
-    END IF;
-
-    -- Debugging: Log the computed avg_score value (useful for checking if the calculation is correct)
-    SELECT avg_score;
-
-    -- Store the computed average score back into the users table
+    -- Update the average_score for the given user_id
     UPDATE users
-    SET average_score = avg_score
+    SET average_score = (
+        SELECT COALESCE(AVG(score), 0)  -- If no scores, set to 0
+        FROM corrections
+        WHERE corrections.user_id = user_id
+    )
     WHERE id = user_id;
-
 END $$
 
 DELIMITER ;
