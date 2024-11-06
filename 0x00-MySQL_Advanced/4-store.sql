@@ -5,7 +5,7 @@ CREATE TRIGGER decrease_item_quantity_after_order
 AFTER INSERT ON orders
 FOR EACH ROW
 BEGIN
-    -- Update the item quantity by decreasing the ordered quantity
+    -- Check if the order has a valid item_id and quantity
     UPDATE items
     SET quantity = quantity - NEW.quantity
     WHERE item_id = NEW.item_id;
