@@ -1,6 +1,6 @@
 DELIMITER $$
 
--- Create the ComputeAverageScoreForUser stored procedure
+-- Create or update the ComputeAverageScoreForUser stored procedure
 CREATE PROCEDURE ComputeAverageScoreForUser(
     IN user_id INT  -- Input: user ID (existing user)
 )
@@ -16,6 +16,9 @@ BEGIN
     IF avg_score IS NULL THEN
         SET avg_score = 0;
     END IF;
+
+    -- Debugging: Log the computed avg_score value (useful for checking if the calculation is correct)
+    SELECT avg_score;
 
     -- Store the computed average score back into the users table
     UPDATE users
