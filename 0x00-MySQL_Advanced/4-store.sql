@@ -6,10 +6,10 @@ CREATE TRIGGER decrease_quantity_after_order
 BEFORE INSERT ON orders
 FOR EACH ROW
 BEGIN
-    -- Update the quantity of the item in the items table
+    -- Update the items table to reduce quantity based on the new order
     UPDATE items
-    SET quantity = quantity - NEW.quantity
-    WHERE id = NEW.item_id;
+    SET quantity = quantity - NEW.number
+    WHERE name = NEW.item_name;
 END $$
 
 DELIMITER ;
