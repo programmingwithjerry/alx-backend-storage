@@ -3,7 +3,7 @@
 DELIMITER $$
 
 CREATE FUNCTION SafeDiv(a INT, b INT) 
-RETURNS DECIMAL(10, 2)  -- Updated return type to DECIMAL to preserve decimal points
+RETURNS INT
 DETERMINISTIC
 BEGIN
     -- Check if the denominator is 0
