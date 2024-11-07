@@ -3,7 +3,7 @@
 DELIMITER $$
 
 CREATE FUNCTION SafeDiv(a INT, b INT) 
-RETURNS DECIMAL(20, 10)  -- Updated return type to DECIMAL for higher precision
+RETURNS DECIMAL(10, 2)  -- Updated return type to DECIMAL to preserve decimal points
 DETERMINISTIC
 BEGIN
     -- Check if the denominator is 0
@@ -11,8 +11,8 @@ BEGIN
         -- Return 0 if the second number is 0
         RETURN 0;
     ELSE
-        -- Perform the division with casting to DECIMAL for precise result
-        RETURN CAST(a AS DECIMAL(20, 10)) / CAST(b AS DECIMAL(20, 10));
+        -- Perform the division and return the result
+        RETURN a / b;
     END IF;
 END $$
 
