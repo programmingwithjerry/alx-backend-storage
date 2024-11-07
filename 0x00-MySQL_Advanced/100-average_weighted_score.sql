@@ -22,6 +22,9 @@ BEGIN
     JOIN projects p ON c.project_id = p.id
     WHERE c.user_id = user_id;
 
+    -- Debug: Check the calculated weighted_sum and total_weight
+    SELECT weighted_sum, total_weight;  -- This will help you debug the results
+
     -- Calculate and update the user's average weighted score
     IF total_weight > 0 THEN
         UPDATE users
