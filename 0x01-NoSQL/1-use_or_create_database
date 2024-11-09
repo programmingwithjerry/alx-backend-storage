@@ -1,8 +1,2 @@
-// use_my_db.js
-// This script creates or uses the database 'my_db' in MongoDB.
-
-// Switch to or create the database 'my_db'
-use my_db;
-
-// Confirm the database in use
-print("Using database: " + db.getName());
+// Creates or switches to the database 'my_db'
+use my_db
