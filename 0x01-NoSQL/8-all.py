@@ -9,4 +9,4 @@ def list_all(mongo_collection):
     documents = mongo_collection.find()
     
     # Convert the cursor to a list and return it
-    return list(documents)
+    return [doc for doc in documents]
