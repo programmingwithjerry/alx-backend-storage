@@ -3,5 +3,9 @@
 
 db.school.update(
     { name: "Holberton school" },            // Filter: documents with name "Holberton school"
-    { $set: { address: "972 Mission street" } }  // Update: add 'address' attribute
+    { $set: {
+		address: "972 Mission street"
+            }
+    },
+    {multi: true}  // Update: add 'address' attribute
 );
