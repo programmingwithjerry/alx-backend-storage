@@ -1,5 +1,4 @@
-// list_documents.js
 // This script lists all documents in the 'school' collection.
 
 // Find and print all documents in the 'school' collection
-const documents = db.school.find();
+db.school.find();
